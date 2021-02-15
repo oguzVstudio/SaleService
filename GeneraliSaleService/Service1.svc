@@ -1,0 +1,6 @@
+﻿<%@ ServiceHost
+    Service="GeneraliSaleService.Service1"
+    CodeBehind="Service1.svc.cs"
+    Factory="SimpleInjector.Integration.Wcf.SimpleInjectorServiceHostFactory,
+        SimpleInjector.Integration.Wcf"
+%>

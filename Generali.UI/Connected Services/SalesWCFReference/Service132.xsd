@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Core.DataObjects.Business.Requests" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Core.DataObjects.Business.Requests" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfAddProductRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AddProductRequest" nillable="true" type="tns:AddProductRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAddProductRequest" nillable="true" type="tns:ArrayOfAddProductRequest" />
+  <xs:complexType name="AddProductRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Barcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProductCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="RetailPrice" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddProductRequest" nillable="true" type="tns:AddProductRequest" />
+  <xs:complexType name="CreateSaleRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="SaleDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SaleDetails" nillable="true" type="tns:ArrayOfSaleDetailRequest" />
+      <xs:element minOccurs="0" name="SalesPrice" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateSaleRequest" nillable="true" type="tns:CreateSaleRequest" />
+  <xs:complexType name="ArrayOfSaleDetailRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SaleDetailRequest" nillable="true" type="tns:SaleDetailRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSaleDetailRequest" nillable="true" type="tns:ArrayOfSaleDetailRequest" />
+  <xs:complexType name="SaleDetailRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineNo" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:long" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="SalesPrice" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SaleDetailRequest" nillable="true" type="tns:SaleDetailRequest" />
+  <xs:complexType name="UserLoginRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserLoginRequest" nillable="true" type="tns:UserLoginRequest" />
+</xs:schema>

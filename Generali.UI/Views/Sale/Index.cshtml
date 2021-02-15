@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.1.119/styles/kendo.default-v2.min.css" />
+<div class="row">
+    <div class="col-md-12" style="min-height:50em">
+        <div class="col-md-12 specialDiv" align="right">
+            <a href="/Sale/CreateSale" class="btn btn-primary">Sipariş Oluştur</a>
+            <a href="/Sale/AddProduct" class="btn btn-primary">Ürün Ekle</a>
+        </div>
+        <div class="col-md-12 specialDiv">
+            <div class="panel panel-default" style="min-height:300px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Siparişler</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="grid"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+
+
+@section scripts{
+    <script src="https://kendo.cdn.telerik.com/2021.1.119/js/kendo.all.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+    <script>
+        $(function () {
+            GetSales();
+        });
+        function GetSales() {
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Sale/GetSales",
+                        data: {
+                            
+                        }
+                    }
+                },    
+                serverFiltering: false,
+                requestStart: function (e) {
+                  
+
+                },
+                requestEnd: function (e) {
+                  
+                },
+                destroy: {
+                    /* omitted for brevity */
+                    cache: false
+                },
+                //group: { field: "" },                
+                pageSize: 20
+            });
+            $("#grid").kendoGrid({
+                toolbar: [{ name: 'excel', text: "Excel'e Aktar" }],
+                excel: {
+                    allPages: true
+                },
+                dataSource: dataSource,
+                pageable: true,
+                groupable: true,
+                columns: [
+                    {
+                        field: "SaleId",
+                        title: "Sipariş No",                        
+                    },
+                    {
+                        field: "LineNo",
+                        title: "Sıra",
+                    },
+                    {
+                        field: "ProductCode",
+                        title: "Ürün Kodu",
+                    },
+                    {
+                        field: "ProductName",
+                        title: "Ürün Adı",
+                    },
+                    {
+                        field: "Price",
+                        title: "Tutar",
+                    },
+                    {
+                        field: "Quantity",
+                        title: "Adet"
+
+                    },
+                    {
+                        field: "SalesDate",
+                        title: "Sipariş Tarihi",
+                    }
+                ]
+            });
+        }
+    </script>
+
+
+}

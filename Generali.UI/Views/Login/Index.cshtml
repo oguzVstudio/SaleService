@@ -1,0 +1,49 @@
+﻿@model Generali.UI.Models.Login.LoginModel 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div align="center">
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1> Login </h1>
+
+            <div>
+                @Html.TextBox("Username", null, new { @class = "form-control", placeholder = "Username", required = "", type = "text" })
+                @Html.ValidationMessage("Username", new { @style = " color:red" })
+            </div>
+            <div>
+                @Html.TextBox("Password", null, new { @class = "form-control", type = "password", placeholder = "Password", required = "" })
+                @Html.ValidationMessage("Password", new { @style = " color:red" })
+            </div>
+            <span class="help-block" style="display:block;color:red; ">@Html.ValidationMessage("Error")</span>
+            <br />
+            <div>
+                <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />
+
+                <button type="submit" class="btn btn-default submit">GİRİS</button>
+            </div>
+            <div class="clearfix"></div>
+            <div class="separator">
+                <div class="clearfix"></div>
+                <br>
+            </div>
+        }
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
